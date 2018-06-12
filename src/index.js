@@ -2,18 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/SearchBar';
 import GifList from './components/GifList';
+import GifModal from './components/GifModal';
 import request from 'superagent';
 import './styles/app.css';
 
-
-
-class App extends React.Component {
+class GifModalApp extends React.Component {
     constructor() {
         super();
-
         this.state = {
-            gifs: []
+            gifs: [],
+            selectedGif: null, //gif user has clicked
+            modalIsOpen: false
         }
+    }
+    openModal(gif){
+        this.setState({
+            modalIsOpen: true,
+            selectedGif: gif
+        })
+        console.log("openModal called, modalIsOpen=" + this.props.modalIsOpen);
+
+    }
+    closeModal(){
+        this.setState({
+            modalIsOpen: false,
+            selectedGif: null
+        })
     }
     handleTermChange(term) {
         //concoct a giphy search URL from term
@@ -30,11 +44,14 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar onTermChange={term => this.handleTermChange(term)}/>
-                <GifList gifs={this.state.gifs} />
-
+                <GifList gifs={this.state.gifs}
+                         onGifSelect={selectedGif => this.openModal(selectedGif)} />
+                <GifModal modalIsOpen={this.state.modalIsOpen}
+                          selectedGif={this.state.selectedGif}
+                          onRequestClose={ () => this.closeModal() } />
             </div>
         );
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<GifModalApp />, document.getElementById('gifModalApp'));
