@@ -19,9 +19,7 @@ class GifModalApp extends React.Component {
     openModal(gif){
         this.setState({
             modalIsOpen: true,
-            selectedGif: gif //correct
-            //selectedXXGif: gif //typo!
-            //selectedGif: 42 //type error
+            selectedGif: gif
         })
     }
     closeModal(){
