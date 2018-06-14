@@ -1,7 +1,6 @@
 import React from 'react';
 
-//const GifItem = (image) => {
-
+// no state or props. just a wrapper function around a gif and associated callback
 const GifItem = ({gif, onGifSelect}) => {
 
     return (

@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // for checking types of props
+
+// SearchBar state is the "term" the string to be searched for.
+// requires one prop, onTermChange, which is a callback notifying parent that
+// the search term has changed.
 
 class SearchBar extends React.Component {
     onInputChange(term) {
@@ -13,6 +18,10 @@ class SearchBar extends React.Component {
             </div>
         );
     }
+}
+
+SearchBar.propTypes = {
+    onTermChange: PropTypes.func.isRequired
 }
 
 export default SearchBar;

@@ -7,6 +7,9 @@ import request from 'superagent';
 
 import './styles/app.css';
 
+//state of the GifModalApp components is a list of gifs
+//and the pair, modelIsOpen and selectedGif, which specify one of the gifs as selected.
+//there are no props.
 class GifModalApp extends React.Component {
     constructor() {
         super();
